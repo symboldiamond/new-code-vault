@@ -22,24 +22,25 @@ function inputCheck() {
 
     if (responses[val]) {
         output.textContent = responses[val].text;
+        
+        // Use maxWidth so it never exceeds the screen size
         output.style.width = responses[val].width;
+        output.style.maxWidth = "90vw"; // 90% of the viewport width
+        output.style.margin = "0 auto"; // Keep it centered
         
         output.style.display = "block";
-        output.style.wordBreak = "break-all";
+        output.style.wordBreak = "break-all"; 
+        output.style.overflowWrap = "break-word"; // Better for mobile browsers
 
         rightSound.currentTime = 0;
         rightSound.play();
         music();
     }
-    else if (val === "") { 
+    else { 
         wrongSound.currentTime = 0;
         wrongSound.play();
-        output.textContent = output.textContent;
-    }
-    else if (val !== "") { 
-        wrongSound.currentTime = 0;
-        wrongSound.play();
-        output.textContent = output.textContent;
+        // Keep the previous text but ensure it still fits the screen
+        output.style.maxWidth = "90vw";
     }
 }
 
